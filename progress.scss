@@ -1,10 +1,8 @@
 @keyframes rotate {
     100% {
-        -webkit-transform: rotate(360deg);
         transform:rotate(360deg);
     }
 }
-
 body, p { margin: 0; }
 html { font-family: "Gill Sans", sans-serif; }
 
@@ -21,12 +19,10 @@ html { font-family: "Gill Sans", sans-serif; }
 
 .progress { width: calc(100vw * 0.3); }
 
-.progress__container { flex-direction: column;}
-
 .progress__bar {
     position: relative;
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     margin: 100px auto;
     border-radius: 50%;
     &::after {
@@ -53,13 +49,13 @@ html { font-family: "Gill Sans", sans-serif; }
     }
     & input {
         height: 30px;
-        width: 60px;
+        width: 50px;
         padding: 10px;
         box-sizing: border-box;
         border-radius: 20px;
         border: 1px solid #000;
         font-family: "Gill Sans", sans-serif;
-        font-size: 14px;
+        font-size: 16px;
         outline: none;
         text-align: center;
     }
@@ -93,12 +89,21 @@ html { font-family: "Gill Sans", sans-serif; }
         transform: translateX(0);
         transition: 0.3s;
     }
-    &:checked {
-        background-color: #3e4fff;
-    }
-    &:checked::after {
-        transform: translateX(calc(100% + 4px));
-    }
+    &:checked { background-color: #3e4fff; }
+    &:checked::after { transform: translateX(calc(100% - 6px)); }
     &:disabled { background-color: #c0c0c0; }
     &:disabled::after { background-color: #e5e5e5; }
+}
+
+
+@media screen and (orientation: landscape) {
+    .progress__container {
+        align-items: center;
+        flex-direction: row;
+        column-gap: 100px;
+    }
+}
+
+@media screen and (orientation: portrait) {
+    .progress__container { flex-direction: column; }
 }
