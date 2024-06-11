@@ -10,14 +10,19 @@ function validateProgressValue() {
     // Удаление нулей в начале значения
     if (inputValue.length > 1)
         inputValue = inputValue.replace(/^0+/, '');
+    else if (inputValue.length === 0) inputValue = 0;
 
     // Удаление недопустимых символов (букв, символов, значений, выходящих за допустимый диапозон)
     if (!isFinite(inputValue) || inputValue > 100)
         inputValue = inputValue.slice(0, -1);
 
-    if (inputValue.length === 0) inputValue = 0;
+    // Блокировка свича Animate, если значение прогресса 0
+    if (inputValue === "0") {
+        animateInput.checked = false;
+        animateInput.dispatchEvent(new Event('change'));
+    }
 
-    animateInput.disabled = inputValue === "0";
+    animateInput.disabled = inputValue === "0" || hideInput.checked;
     valueInput.value = inputValue;
 }
 
@@ -41,5 +46,11 @@ animateInput.addEventListener('change', () => {
 // Изменение видимости при взаимодействии со свичем Hide
 hideInput.addEventListener('change', () => {
     progressBar.style.visibility = hideInput.checked ? "hidden" : "";
-    animateInput.disabled = hideInput.checked;
+    animateInput.disabled = valueInput.value === "0" || hideInput.checked;
+
+    // Блокировка свича Animate, если прогресс бар скрыт
+    if (hideInput.checked) {
+        animateInput.checked = false;
+        animateInput.dispatchEvent(new Event('change'));
+    }
 });
