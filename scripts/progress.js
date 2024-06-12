@@ -4,10 +4,11 @@ function validateProgressValue(value) {
     if (value.length > 1)
         value = value.replace(/^0+/, '');
 
-    if (!isFinite(value) || value > 100)
+    if (value > 100 || !isFinite(value.slice(-1)))
         value = value.slice(0, -1);
 
-    if (value.length === 0) value = 0;
+    if (value.length === 0 || !isFinite(value)) value = 0;
+
     //Обновление значения в поле ввода прогресса
     if (valueInput) valueInput.value = value;
 
@@ -15,13 +16,15 @@ function validateProgressValue(value) {
     if (animateInput) {
         setAnimateSwitcherState(value, hideInput.checked)
     }
+
+    return value;
 }
 
 // Функция обновления состояние прогресса
 function updateProgressValue(value, valueInput, animateInput, hideInput) {
     const progressBar = document.getElementById('progressCircle');
 
-    validateProgressValue(value || "0", valueInput, animateInput, hideInput);
+    value = validateProgressValue(value || "0", valueInput, animateInput, hideInput);
     progressBar.style.background = `conic-gradient(#3e4fff ${value}%, #e0e0e0 0%)`;
 }
 
