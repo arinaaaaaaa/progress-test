@@ -7,7 +7,7 @@ const hideInput = document.getElementById('hide');
 
 //Функция настройки доступности свича Animate
 const setAnimateSwitcherState = (value, hide) => {
-    const isDisabled = hide || value === "0";
+    const isDisabled = hide || value == "0";
     animateInput.disabled = isDisabled;
 
     if (isDisabled)

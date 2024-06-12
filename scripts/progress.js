@@ -14,7 +14,6 @@ function validateProgressValue(value) {
 
     // Обновление состояния элементов управления анимацией
     if (animateInput) {
-        console.log('hi')
         setAnimateSwitcherState(value, hideInput.checked)
     }
 
