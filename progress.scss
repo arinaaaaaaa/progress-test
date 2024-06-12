@@ -17,12 +17,11 @@ html { font-family: "Gill Sans", sans-serif; }
     align-items: center;
 }
 
-.progress { width: calc(100vw * 0.3); }
-
 .progress__bar {
     position: relative;
-    width: 120px;
-    height: 120px;
+    width: 70%;
+    height: 100px;
+    aspect-ratio: 1 / 1;
     margin: 100px auto;
     border-radius: 50%;
     &::after {
@@ -102,8 +101,43 @@ html { font-family: "Gill Sans", sans-serif; }
         flex-direction: row;
         column-gap: 100px;
     }
+    .progress { width: calc(100vw * 0.5); }
 }
 
 @media screen and (orientation: portrait) {
-    .progress__container { flex-direction: column; }
+    html { font-size: 38px; }
+    .progress__container {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+    .progress { width: calc(100vw * 0.6); }
+    .progress__bar {
+        height: 100%;
+        margin: 200px auto;
+        &::after {
+            top: 20px;
+            left: 20px;
+            bottom: 20px;
+            right: 20px;
+        }
+    }
+    .progress__settings {
+        width: fit-content;
+        row-gap: 20px;
+        & span { width: max-content; }
+        & input{
+            height: 60px;
+            width: 130px;
+            border-radius: 50px;
+            font-size: 24px;
+        }
+    }
+    .switcher {
+        &::after {
+            width: 55px;
+            height: 55px;
+        }
+        &:checked::after { transform: translateX(calc(100% + 14px)); }
+    }
 }
