@@ -103,7 +103,8 @@ html {
     width: 100%;
     align-items: center; }
   .progress {
-    width: calc(100vw * 0.6); }
+    width: calc(100vw * 0.6);
+    flex-direction: column; }
   .progress__bar {
     height: 100%;
     margin: 200px auto; }
